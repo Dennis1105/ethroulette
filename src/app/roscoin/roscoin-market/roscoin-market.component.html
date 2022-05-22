@@ -1,0 +1,30 @@
+<mat-card>
+  <!-- <mat-card-header>Roscoin</mat-card-header> -->
+  <mat-card-content>
+    <p>You have <span id="balance">{{balance}}</span> Roscoins.</p>
+    <p>The current price for 1 Roscoin is <span id="price">{{currentPrice}}</span> Eth.</p>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+  <mat-card-header>Buy</mat-card-header>
+  <mat-card-content>
+    <mat-form-field>
+      <input type="text" matInput id="purchaseAmount" placeholder="Purchase Amount In Eth" #purchaseAmount>
+    </mat-form-field>
+
+    <button mat-button id="buy" (click)="buy(purchaseAmount.value)">Buy</button>
+  </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>Sell</mat-card-header>
+    <mat-card-content>
+      <mat-form-field>
+        <input type="text" matInput id="saleAmount" placeholder="Sale Amount In Roscoins" #saleAmount>
+      </mat-form-field>
+
+      <button mat-button id="sell" (click)="sell(saleAmount.value)">Sell</button>
+    </mat-card-content>
+  </mat-card>
+

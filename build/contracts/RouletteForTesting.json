@@ -1,0 +1,2896 @@
+{
+  "contractName": "RouletteForTesting",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address payable",
+          "name": "roscoinAddress",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "qid",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "betSize",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "betNumber",
+          "type": "uint8"
+        }
+      ],
+      "name": "Bet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "Paused",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "PauserAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "PauserRemoved",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "winner",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "qid",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "payout",
+          "type": "uint256"
+        }
+      ],
+      "name": "Payout",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "player",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes32",
+          "name": "qid",
+          "type": "bytes32"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "betSize",
+          "type": "uint256"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "betNumber",
+          "type": "uint8"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint8",
+          "name": "winningNumber",
+          "type": "uint8"
+        }
+      ],
+      "name": "Play",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "Unpaused",
+      "type": "event"
+    },
+    {
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "fallback"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "qid",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "string",
+          "name": "result",
+          "type": "string"
+        }
+      ],
+      "name": "__callback",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "_myid",
+          "type": "bytes32"
+        },
+        {
+          "internalType": "string",
+          "name": "_result",
+          "type": "string"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_proof",
+          "type": "bytes"
+        }
+      ],
+      "name": "__callback",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "addPauser",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "backedToken",
+      "outputs": [
+        {
+          "internalType": "contract BackedToken",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "balanceForBacking",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "deposit",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "account",
+          "type": "address"
+        }
+      ],
+      "name": "isPauser",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "maxBet",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "oraclizeFeeEstimate",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "pure",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "pause",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [],
+      "name": "paused",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "renouncePauser",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [],
+      "name": "unpause",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint256",
+          "name": "ethAmount",
+          "type": "uint256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "uint8",
+          "name": "number",
+          "type": "uint8"
+        }
+      ],
+      "name": "bet",
+      "outputs": [],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address payable\",\"name\":\"roscoinAddress\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"player\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"qid\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"betSize\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"betNumber\",\"type\":\"uint8\"}],\"name\":\"Bet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"PauserAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"PauserRemoved\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"winner\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"qid\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"payout\",\"type\":\"uint256\"}],\"name\":\"Payout\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"player\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes32\",\"name\":\"qid\",\"type\":\"bytes32\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"betSize\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"betNumber\",\"type\":\"uint8\"},{\"indexed\":false,\"internalType\":\"uint8\",\"name\":\"winningNumber\",\"type\":\"uint8\"}],\"name\":\"Play\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"fallback\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"qid\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"result\",\"type\":\"string\"}],\"name\":\"__callback\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"bytes32\",\"name\":\"_myid\",\"type\":\"bytes32\"},{\"internalType\":\"string\",\"name\":\"_result\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"_proof\",\"type\":\"bytes\"}],\"name\":\"__callback\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"addPauser\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"backedToken\",\"outputs\":[{\"internalType\":\"contract BackedToken\",\"name\":\"\",\"type\":\"address\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"balanceForBacking\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint8\",\"name\":\"number\",\"type\":\"uint8\"}],\"name\":\"bet\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"deposit\",\"outputs\":[],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"isPauser\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"maxBet\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"oraclizeFeeEstimate\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"payable\":false,\"stateMutability\":\"pure\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"pause\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"renouncePauser\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[],\"name\":\"unpause\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"ethAmount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Rosco Kalis <roscokalis@gmail.com>\",\"details\":\"This contract extends the Roulette contract, but with deterministic win conditions, to test the betting functionality.\",\"methods\":{\"__callback(bytes32,string)\":{\"details\":\"Uses the `players` mapping to retrieve a player's information, deletes the player information afterwards.Emits Play event.\",\"params\":{\"qid\":\"The query id of the corresponding Oraclize query.\",\"result\":\"The result of the Oraclize query.\"}},\"bet(uint8)\":{\"params\":{\"number\":\"The number that is bet on.\"}},\"deposit()\":{\"details\":\"Funds are added to balanceForBacking as well.\"},\"maxBet()\":{\"details\":\"Based on empirical statistics (see docs/max_bet_size.md).\",\"return\":\"The maximum bet.\"},\"oraclizeFeeEstimate()\":{\"return\":\"An estimate of the oraclize fee.\"},\"pause()\":{\"details\":\"Called by a pauser to pause, triggers stopped state.\"},\"paused()\":{\"details\":\"Returns true if the contract is paused, and false otherwise.\"},\"unpause()\":{\"details\":\"Called by a pauser to unpause, returns to normal state.\"},\"withdraw(uint256)\":{\"details\":\"Funds are removed from balanceForBacking as well.\",\"params\":{\"ethAmount\":\"The amount of eth to withdraw.\"}}},\"title\":\"RouletteForTesting\"},\"userdoc\":{\"methods\":{\"__callback(bytes32,string)\":{\"notice\":\"Callback function for Oraclize, checks if the player won the bet, and payd out if they did.\"},\"bet(uint8)\":{\"notice\":\"Overrides the existing bet function, always takes 1 as winning number.\"},\"deposit()\":{\"notice\":\"Allows the backed token to deposit funds into the contract.\"},\"maxBet()\":{\"notice\":\"Returns the maximum bet (0.5% of balance) for this contract.\"},\"oraclizeFeeEstimate()\":{\"notice\":\"Returns an estimate of the oraclize fee.\"},\"withdraw(uint256)\":{\"notice\":\"Allows the backed token to withdraw funds from the contract.\"}}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/RouletteForTesting.sol\":\"RouletteForTesting\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"openzeppelin-solidity/contracts/GSN/Context.sol\":{\"keccak256\":\"0x90a3995645af7562d84b9d69363ffa5ae7217714ab61e951bf7bc450f40e4061\",\"urls\":[\"bzz-raw://216ef9d6b614db4eb46970b4e84903f2534a45572dd30a79f0041f1a5830f436\",\"dweb:/ipfs/QmNPrJ4MWKUAWzKXpUqeyKRUfosaoANZAqXgvepdrCwZAG\"]},\"openzeppelin-solidity/contracts/access/Roles.sol\":{\"keccak256\":\"0xb002c378d7b82a101bd659c341518953ca0919d342c0a400196982c0e7e7bcdb\",\"urls\":[\"bzz-raw://00a788c4631466c220b385bdd100c571d24b2deccd657615cfbcef6cadf669a4\",\"dweb:/ipfs/QmTEwDbjJNxmMNCDMqtuou3dyM8Wtp8Q9NFvn7SAVM7Jf3\"]},\"openzeppelin-solidity/contracts/access/roles/PauserRole.sol\":{\"keccak256\":\"0xd1b5c934bab36d753c22987ad98c7614cb50ebf641371a83c96f8138619d7c30\",\"urls\":[\"bzz-raw://69c4bb822caae3d1bfd38e81f03b6d618d4d83cbb8e9f8236d28e1c4fe1d0d81\",\"dweb:/ipfs/QmWamstbFhdySmocF2TSKYVLLZF24JG4aXMvHiRdWKv3RA\"]},\"openzeppelin-solidity/contracts/lifecycle/Pausable.sol\":{\"keccak256\":\"0xd3e5a49edfb74654d122962cc60b917d1c60461e669a7262fd7aba201fac1260\",\"urls\":[\"bzz-raw://0307a3cae4df037aee16fb0b0d94849cb4d9b20d7d7182c185f3efac6d2caec0\",\"dweb:/ipfs/QmezTANBfrJmCvxfmfyfcfFGtbcUEUtoJCjfxKnAePiNoE\"]},\"openzeppelin-solidity/contracts/math/SafeMath.sol\":{\"keccak256\":\"0x640b6dee7a4b830bdfd52b5031a07fc2b12209f5b2e29e5d364a7d37f69d8076\",\"urls\":[\"bzz-raw://31113152e1ddb78fe7a4197f247591ca894e93f916867beb708d8e747b6cc74f\",\"dweb:/ipfs/QmbZaJyXdpsYGykVhHH9qpVGQg9DGCxE2QufbCUy3daTgq\"]},\"openzeppelin-solidity/contracts/token/ERC20/ERC20.sol\":{\"keccak256\":\"0xb15af804e2bc97db51e4e103f13de9fe13f87e6b835d7a88c897966c0e58506e\",\"urls\":[\"bzz-raw://1e8cff8437557fc915a3bed968fcd8f2df9809599e665ef69c2c9ce628548055\",\"dweb:/ipfs/QmP5spYP8vs2jvLF8zNrXUbqB79hMsoEvMHiLcBxerWKcm\"]},\"openzeppelin-solidity/contracts/token/ERC20/IERC20.sol\":{\"keccak256\":\"0xe5bb0f57cff3e299f360052ba50f1ea0fff046df2be070b6943e0e3c3fdad8a9\",\"urls\":[\"bzz-raw://59fd025151435da35faa8093a5c7a17de02de9d08ad27275c5cdf05050820d91\",\"dweb:/ipfs/QmQMvwEcPhoRXzbXyrdoeRtvLoifUW9Qh7Luho7bmUPRkc\"]},\"project:/contracts/BackedToken.sol\":{\"keccak256\":\"0xf7a0c6f859e727f6e2343a86d757277bfc724d9f92fb995440dc7bb21ece6ac3\",\"urls\":[\"bzz-raw://6a16c0ba23fccbd54ede713572faa67ee2460398a80070a3254bc3594c35a7a1\",\"dweb:/ipfs/QmTADU1R787DacoMtdLrqVMn2FkLX7vK26iqisCjjNsqtx\"]},\"project:/contracts/BackingContract.sol\":{\"keccak256\":\"0x808d92773f96fb69591c4efba08e1276fcb2f23278afea92247bd43be3d10939\",\"urls\":[\"bzz-raw://226dfc47105427eec8007d8717a8578515d839d97c303626d910ea15f757345f\",\"dweb:/ipfs/Qme52VqvHMYh7UagghGycEpFCJTqXdYdvFuSGwqzyc6dpT\"]},\"project:/contracts/Roulette.sol\":{\"keccak256\":\"0x11cc621f07bd52e37434bb935559fd2bda53056843d77b12d93be152ae71557d\",\"urls\":[\"bzz-raw://ce629d915013bdcfeb64bc4ea1a7403d841912fc1d3f2abdb4174fc80cc84524\",\"dweb:/ipfs/QmctX3dfzhrPJ5bUSPebWszp7XJA93ZauR7hh4Krqy5hpz\"]},\"project:/contracts/RouletteForTesting.sol\":{\"keccak256\":\"0x939f77e8949d1928c2a7c59c52f7146534d257f45a98acfb6b678b987b661061\",\"urls\":[\"bzz-raw://6200bcc5ab263d9c74b6aa114e5e887a9969b6c78214db62c0ce8a6da1e696e8\",\"dweb:/ipfs/QmSrR519HcW9LJZnq3gEfF3vpuG2hGFg4SNrRbXteygkhP\"]},\"project:/contracts/oraclizeAPI.sol\":{\"keccak256\":\"0x22833f73ba1800b724b08c36951eaf0bbd909ad1f0e605fb052e5d0f1bbac20e\",\"urls\":[\"bzz-raw://e7ff3467fff068fdaf94182f5944e2e14828d0d8be10aa97f4ead3c195b776d9\",\"dweb:/ipfs/QmZVM8Tffcb9zKKbhGMQV9sXLVgAnp8yjT8LhHno5Uoopa\"]}},\"version\":1}",
+  "bytecode": "0x60806040523480156200001157600080fd5b506040516200337a3803806200337a833981810160405260208110156200003757600080fd5b810190808051906020019092919050505080806200006a6200005e6200018a60201b60201c565b6200019260201b60201c565b6000600660006101000a81548160ff02191690831515021790555080600660016101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550600660019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663d63fedc5306040518263ffffffff1660e01b8152600401808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff168152602001915050600060405180830381600087803b1580156200016857600080fd5b505af11580156200017d573d6000803e3d6000fd5b50505050505050620003b7565b600033905090565b620001ad816005620001f360201b6200273c1790919060201c565b8073ffffffffffffffffffffffffffffffffffffffff167f6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f860405160405180910390a250565b620002058282620002d760201b60201c565b1562000279576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff16141562000360576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526022815260200180620033586022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b612f9180620003c76000396000f3fe6080604052600436106100e85760003560e01c80636ef8d66d1161008a5780639a26c0c4116100595780639a26c0c41461052b578063d0821b0e14610556578063d0e30db014610587578063ea3f73ad14610591576100e8565b80636ef8d66d1461045557806382dc1ec41461046c5780638456cb59146104bd5780638e6b523e146104d4576100e8565b806338bbfa50116100c657806338bbfa501461023d5780633f4ba83a146103a657806346fbf68e146103bd5780635c975abb14610426576100e8565b806327dc297e146101055780632e1a7d4d146101d75780632e5b216814610212575b6100fd346007546105bc90919063ffffffff16565b600781905550005b34801561011157600080fd5b506101d56004803603604081101561012857600080fd5b81019080803590602001909291908035906020019064010000000081111561014f57600080fd5b82018360208201111561016157600080fd5b8035906020019184600183028401116401000000008311171561018357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610644565b005b3480156101e357600080fd5b50610210600480360360208110156101fa57600080fd5b81019080803590602001909291905050506109c5565b005b34801561021e57600080fd5b50610227610bc0565b6040518082815260200191505060405180910390f35b34801561024957600080fd5b506103a46004803603606081101561026057600080fd5b81019080803590602001909291908035906020019064010000000081111561028757600080fd5b82018360208201111561029957600080fd5b803590602001918460018302840111640100000000831117156102bb57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561031e57600080fd5b82018360208201111561033057600080fd5b8035906020019184600183028401116401000000008311171561035257600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610be6565b005b3480156103b257600080fd5b506103bb610beb565b005b3480156103c957600080fd5b5061040c600480360360208110156103e057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610d59565b604051808215151515815260200191505060405180910390f35b34801561043257600080fd5b5061043b610d76565b604051808215151515815260200191505060405180910390f35b34801561046157600080fd5b5061046a610d8d565b005b34801561047857600080fd5b506104bb6004803603602081101561048f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610d9f565b005b3480156104c957600080fd5b506104d2610e10565b005b3480156104e057600080fd5b506104e9610f7f565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561053757600080fd5b50610540610fa5565b6040518082815260200191505060405180910390f35b6105856004803603602081101561056c57600080fd5b81019080803560ff169060200190929190505050610fab565b005b61058f6112cd565b005b34801561059d57600080fd5b506105a6611390565b6040518082815260200191505060405180910390f35b60008082840190508381101561063a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b8091505092915050565b61064c61139f565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146106cf576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526031815260200180612dbe6031913960400191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff166008600084815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614156107a8576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f5175657279206e6565647320616e206173736f63696174656420706c6179657281525060200191505060405180910390fd5b60006107b3826116bc565b905060006008600085815260200190815260200160002090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f91be5b5d42b869d0275147918e4b559f9d2d696bc711937642c9363242ef11008583600101548460020160009054906101000a900460ff1686604051808581526020018481526020018360ff1660ff1681526020018260ff1660ff16815260200194505050505060405180910390a261089081600101546007546105bc90919063ffffffff16565b6007819055508160ff168160020160009054906101000a900460ff1660ff1614156109655760008160000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905060006108f8602484600101546116d090919063ffffffff16565b905060086000878152602001908152602001600020600080820160006101000a81549073ffffffffffffffffffffffffffffffffffffffff021916905560018201600090556002820160006101000a81549060ff0219169055505061095e828783611756565b50506109bf565b60086000858152602001908152602001600020600080820160006101000a81549073ffffffffffffffffffffffffffffffffffffffff021916905560018201600090556002820160006101000a81549060ff021916905550505b50505050565b600660019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614610a6b576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602f815260200180612def602f913960400191505060405180910390fd5b47811115610ac4576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526022815260200180612e4e6022913960400191505060405180910390fd5b600754811115610b1f576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e815260200180612d90602e913960400191505060405180910390fd5b610b34816007546118c590919063ffffffff16565b600781905550600660019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663d0e30db0826040518263ffffffff1660e01b81526004016000604051808303818588803b158015610ba457600080fd5b505af1158015610bb8573d6000803e3d6000fd5b505050505050565b6000610bca611390565b610be060c860075461190f90919063ffffffff16565b01905090565b505050565b610bfb610bf6611959565b610d59565b610c50576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526030815260200180612e1e6030913960400191505060405180910390fd5b600660009054906101000a900460ff16610cd2576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260148152602001807f5061757361626c653a206e6f742070617573656400000000000000000000000081525060200191505060405180910390fd5b6000600660006101000a81548160ff0219169083151502179055507f5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa610d16611959565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a1565b6000610d6f82600561196190919063ffffffff16565b9050919050565b6000600660009054906101000a900460ff16905090565b610d9d610d98611959565b611a3f565b565b610daf610daa611959565b610d59565b610e04576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526030815260200180612e1e6030913960400191505060405180910390fd5b610e0d81611a99565b50565b610e20610e1b611959565b610d59565b610e75576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526030815260200180612e1e6030913960400191505060405180910390fd5b600660009054906101000a900460ff1615610ef8576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260108152602001807f5061757361626c653a207061757365640000000000000000000000000000000081525060200191505060405180910390fd5b6001600660006101000a81548160ff0219169083151502179055507f62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258610f3c611959565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a1565b600660019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60075481565b600660009054906101000a900460ff161561102e576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260108152602001807f5061757361626c653a207061757365640000000000000000000000000000000081525060200191505060405180910390fd5b611036610bc0565b34111561108e576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526026815260200180612e706026913960400191505060405180910390fd5b60006110ce6040518060400160405280600c81526020017f576f6c6672616d416c7068610000000000000000000000000000000000000000815250611af3565b9050803411611128576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602d815260200180612f0e602d913960400191505060405180910390fd5b6000813403905060006111a56040518060400160405280600c81526020017f576f6c6672616d416c70686100000000000000000000000000000000000000008152506040518060400160405280601e81526020017f72616e646f6d20696e7465676572206265747765656e203020616e6420300000815250611e84565b905060405180606001604052803373ffffffffffffffffffffffffffffffffffffffff1681526020018381526020018560ff168152506008600083815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020160006101000a81548160ff021916908360ff1602179055509050503373ffffffffffffffffffffffffffffffffffffffff167f214ae1d1aa57aeaec2e90ff231808911a5a626a3c6bc242503a829db732011ce828487604051808481526020018381526020018260ff1660ff168152602001935050505060405180910390a250505050565b600660019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614611373576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602f815260200180612def602f913960400191505060405180910390fd5b611388346007546105bc90919063ffffffff16565b600781905550565b6000660e35fa931a0000905090565b60008073ffffffffffffffffffffffffffffffffffffffff16600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16148061142757506000611425600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166123ca565b145b156114385761143660006123d5565b505b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b1580156114a257600080fd5b505af11580156114b6573d6000803e3d6000fd5b505050506040513d60208110156114cc57600080fd5b810190808051906020019092919050505073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161461161557600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b15801561159a57600080fd5b505af11580156115ae573d6000803e3d6000fd5b505050506040513d60208110156115c457600080fd5b81019080805190602001909291905050506000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663c281d19e6040518163ffffffff1660e01b815260040160206040518083038186803b15801561167c57600080fd5b505afa158015611690573d6000803e3d6000fd5b505050506040513d60208110156116a657600080fd5b8101908080519060200190929190505050905090565b60006116c98260006123e6565b9050919050565b6000808314156116e35760009050611750565b60008284029050828482816116f457fe5b041461174b576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526021815260200180612eed6021913960400191505060405180910390fd5b809150505b92915050565b600081116117af576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526023815260200180612d6d6023913960400191505060405180910390fd5b47811115611808576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526036815260200180612e966036913960400191505060405180910390fd5b61181d816007546118c590919063ffffffff16565b6007819055508273ffffffffffffffffffffffffffffffffffffffff166108fc829081150290604051600060405180830381858888f19350505050158015611869573d6000803e3d6000fd5b508273ffffffffffffffffffffffffffffffffffffffff167f212950d8b6a2784adeaa8e088d070610bdfab9eaef5a7127d90118ec1cf34a618383604051808381526020018281526020019250505060405180910390a2505050565b600061190783836040518060400160405280601e81526020017f536166654d6174683a207375627472616374696f6e206f766572666c6f7700008152506124f9565b905092915050565b600061195183836040518060400160405280601a81526020017f536166654d6174683a206469766973696f6e206279207a65726f0000000000008152506125b9565b905092915050565b600033905090565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156119e8576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526022815260200180612f3b6022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b611a5381600561267f90919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e60405160405180910390a250565b611aad81600561273c90919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f860405160405180910390a250565b60008073ffffffffffffffffffffffffffffffffffffffff16600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161480611b7b57506000611b79600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166123ca565b145b15611b8c57611b8a60006123d5565b505b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b158015611bf657600080fd5b505af1158015611c0a573d6000803e3d6000fd5b505050506040513d6020811015611c2057600080fd5b810190808051906020019092919050505073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614611d6957600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b158015611cee57600080fd5b505af1158015611d02573d6000803e3d6000fd5b505050506040513d6020811015611d1857600080fd5b81019080805190602001909291905050506000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663524f3889836040518263ffffffff1660e01b81526004018080602001828103825283818151815260200191508051906020019080838360005b83811015611df6578082015181840152602081019050611ddb565b50505050905090810190601f168015611e235780820380516001836020036101000a031916815260200191505b5092505050602060405180830381600087803b158015611e4257600080fd5b505af1158015611e56573d6000803e3d6000fd5b505050506040513d6020811015611e6c57600080fd5b81019080805190602001909291905050509050919050565b60008073ffffffffffffffffffffffffffffffffffffffff16600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161480611f0c57506000611f0a600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166123ca565b145b15611f1d57611f1b60006123d5565b505b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b158015611f8757600080fd5b505af1158015611f9b573d6000803e3d6000fd5b505050506040513d6020811015611fb157600080fd5b810190808051906020019092919050505073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16146120fa57600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b15801561207f57600080fd5b505af1158015612093573d6000803e3d6000fd5b505050506040513d60208110156120a957600080fd5b81019080805190602001909291905050506000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663524f3889856040518263ffffffff1660e01b81526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561218957808201518184015260208101905061216e565b50505050905090810190601f1680156121b65780820380516001836020036101000a031916815260200191505b5092505050602060405180830381600087803b1580156121d557600080fd5b505af11580156121e9573d6000803e3d6000fd5b505050506040513d60208110156121ff57600080fd5b8101908080519060200190929190505050905062030d403a02670de0b6b3a764000001811115612235576000801b9150506123c4565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663adf59f9982600087876040518563ffffffff1660e01b8152600401808481526020018060200180602001838103835285818151815260200191508051906020019080838360005b838110156122d05780820151818401526020810190506122b5565b50505050905090810190601f1680156122fd5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b8381101561233657808201518184015260208101905061231b565b50505050905090810190601f1680156123635780820380516001836020036101000a031916815260200191505b50955050505050506020604051808303818588803b15801561238457600080fd5b505af1158015612398573d6000803e3d6000fd5b50505050506040513d60208110156123af57600080fd5b81019080805190602001909291905050509150505b92915050565b6000813b9050919050565b60006123df612817565b9050919050565b600060608390506000809050600080905060008090505b83518110156124da57603084828151811061241457fe5b602001015160f81c60f81b60f81c60ff16101580156124505750603984828151811061243c57fe5b602001015160f81c60f81b60f81c60ff1611155b156124a2578115612473576000861415612469576124da565b8580600190039650505b600a83029250603084828151811061248757fe5b602001015160f81c60f81b60f81c60ff1603830192506124cd565b602e8482815181106124b057fe5b602001015160f81c60f81b60f81c60ff1614156124cc57600191505b5b80806001019150506123fd565b5060008511156124ed5784600a0a820291505b81935050505092915050565b60008383111582906125a6576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561256b578082015181840152602081019050612550565b50505050905090810190601f1680156125985780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b5060008385039050809150509392505050565b60008083118290612665576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561262a57808201518184015260208101905061260f565b50505050905090810190601f1680156126575780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b50600083858161267157fe5b049050809150509392505050565b6126898282611961565b6126de576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526021815260200180612ecc6021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b6127468282611961565b156127b9576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b600080612837731d3b2638a7cc9f2cb3d298a3da7a90b67e5506ed6123ca565b11156128d957731d3b2638a7cc9f2cb3d298a3da7a90b67e5506ed600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506128d06040518060400160405280600b81526020017f6574685f6d61696e6e6574000000000000000000000000000000000000000000815250612cad565b60019050612caa565b60006128f873c03a2615d5efaf5f49f60b7bb6583eaec212fdf16123ca565b111561299a5773c03a2615d5efaf5f49f60b7bb6583eaec212fdf1600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506129916040518060400160405280600c81526020017f6574685f726f707374656e330000000000000000000000000000000000000000815250612cad565b60019050612caa565b60006129b973b7a07bcf2ba2f2703b24c0691b5278999c59ac7e6123ca565b1115612a5b5773b7a07bcf2ba2f2703b24c0691b5278999c59ac7e600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550612a526040518060400160405280600981526020017f6574685f6b6f76616e0000000000000000000000000000000000000000000000815250612cad565b60019050612caa565b6000612a7a73146500cfd35b22e4a392fe0adc06de1a1368ed486123ca565b1115612b1c5773146500cfd35b22e4a392fe0adc06de1a1368ed48600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550612b136040518060400160405280600b81526020017f6574685f72696e6b656279000000000000000000000000000000000000000000815250612cad565b60019050612caa565b6000612b3b736f485c8bf6fc43ea212e93bbf8ce046c7f1cb4756123ca565b1115612b9f57736f485c8bf6fc43ea212e93bbf8ce046c7f1cb475600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060019050612caa565b6000612bbe7320e12a1f859b3feae5fb2a0a32c18f5a65555bbf6123ca565b1115612c22577320e12a1f859b3feae5fb2a0a32c18f5a65555bbf600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060019050612caa565b6000612c417351efaf4c8b3c9afbd5ab9f4bbc82784ab6ef8faa6123ca565b1115612ca5577351efaf4c8b3c9afbd5ab9f4bbc82784ab6ef8faa600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060019050612caa565b600090505b90565b8060029080519060200190612cc3929190612cc7565b5050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10612d0857805160ff1916838001178555612d36565b82800160010185558215612d36579182015b82811115612d35578251825591602001919060010190612d1a565b5b509050612d439190612d47565b5090565b612d6991905b80821115612d65576000816000905550600101612d4d565b5090565b9056fe5061796f757420616d6f756e742073686f756c64206265206d6f7265207468616e203043616e206e6f74207769746864726177206d6f7265207468616e2062616c616e636520666f72206261636b696e6743616e206f6e6c792062652063616c6c65642066726f6d206f7261636c697a652063616c6c6261636b206164647265737343616e206f6e6c792062652063616c6c656420627920746865206261636b656420746f6b656e20636f6e7472616374506175736572526f6c653a2063616c6c657220646f6573206e6f742068617665207468652050617573657220726f6c6543616e206e6f74207769746864726177206d6f7265207468616e2062616c616e636542657420616d6f756e742063616e206e6f7420657863656564206d6178206265742073697a655061796f757420616d6f756e742073686f756c64206e6f74206265206d6f7265207468616e20636f6e74726163742062616c616e6365526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f7742657420616d6f756e742073686f756c6420626520686967686572207468616e206f7261636c697a6520666565526f6c65733a206163636f756e7420697320746865207a65726f2061646472657373a265627a7a72315820e1cb3697047a77eb0d9ddeeb56b68a3d9cae66da483944e7f9a86ccefb4126f064736f6c63430005100032526f6c65733a206163636f756e7420697320746865207a65726f2061646472657373",
+  "deployedBytecode": "0x6080604052600436106100e85760003560e01c80636ef8d66d1161008a5780639a26c0c4116100595780639a26c0c41461052b578063d0821b0e14610556578063d0e30db014610587578063ea3f73ad14610591576100e8565b80636ef8d66d1461045557806382dc1ec41461046c5780638456cb59146104bd5780638e6b523e146104d4576100e8565b806338bbfa50116100c657806338bbfa501461023d5780633f4ba83a146103a657806346fbf68e146103bd5780635c975abb14610426576100e8565b806327dc297e146101055780632e1a7d4d146101d75780632e5b216814610212575b6100fd346007546105bc90919063ffffffff16565b600781905550005b34801561011157600080fd5b506101d56004803603604081101561012857600080fd5b81019080803590602001909291908035906020019064010000000081111561014f57600080fd5b82018360208201111561016157600080fd5b8035906020019184600183028401116401000000008311171561018357600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610644565b005b3480156101e357600080fd5b50610210600480360360208110156101fa57600080fd5b81019080803590602001909291905050506109c5565b005b34801561021e57600080fd5b50610227610bc0565b6040518082815260200191505060405180910390f35b34801561024957600080fd5b506103a46004803603606081101561026057600080fd5b81019080803590602001909291908035906020019064010000000081111561028757600080fd5b82018360208201111561029957600080fd5b803590602001918460018302840111640100000000831117156102bb57600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f8201169050808301925050505050505091929192908035906020019064010000000081111561031e57600080fd5b82018360208201111561033057600080fd5b8035906020019184600183028401116401000000008311171561035257600080fd5b91908080601f016020809104026020016040519081016040528093929190818152602001838380828437600081840152601f19601f820116905080830192505050505050509192919290505050610be6565b005b3480156103b257600080fd5b506103bb610beb565b005b3480156103c957600080fd5b5061040c600480360360208110156103e057600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610d59565b604051808215151515815260200191505060405180910390f35b34801561043257600080fd5b5061043b610d76565b604051808215151515815260200191505060405180910390f35b34801561046157600080fd5b5061046a610d8d565b005b34801561047857600080fd5b506104bb6004803603602081101561048f57600080fd5b81019080803573ffffffffffffffffffffffffffffffffffffffff169060200190929190505050610d9f565b005b3480156104c957600080fd5b506104d2610e10565b005b3480156104e057600080fd5b506104e9610f7f565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390f35b34801561053757600080fd5b50610540610fa5565b6040518082815260200191505060405180910390f35b6105856004803603602081101561056c57600080fd5b81019080803560ff169060200190929190505050610fab565b005b61058f6112cd565b005b34801561059d57600080fd5b506105a6611390565b6040518082815260200191505060405180910390f35b60008082840190508381101561063a576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601b8152602001807f536166654d6174683a206164646974696f6e206f766572666c6f77000000000081525060200191505060405180910390fd5b8091505092915050565b61064c61139f565b73ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff16146106cf576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526031815260200180612dbe6031913960400191505060405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff166008600084815260200190815260200160002060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614156107a8576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260208152602001807f5175657279206e6565647320616e206173736f63696174656420706c6179657281525060200191505060405180910390fd5b60006107b3826116bc565b905060006008600085815260200190815260200160002090508060000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f91be5b5d42b869d0275147918e4b559f9d2d696bc711937642c9363242ef11008583600101548460020160009054906101000a900460ff1686604051808581526020018481526020018360ff1660ff1681526020018260ff1660ff16815260200194505050505060405180910390a261089081600101546007546105bc90919063ffffffff16565b6007819055508160ff168160020160009054906101000a900460ff1660ff1614156109655760008160000160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905060006108f8602484600101546116d090919063ffffffff16565b905060086000878152602001908152602001600020600080820160006101000a81549073ffffffffffffffffffffffffffffffffffffffff021916905560018201600090556002820160006101000a81549060ff0219169055505061095e828783611756565b50506109bf565b60086000858152602001908152602001600020600080820160006101000a81549073ffffffffffffffffffffffffffffffffffffffff021916905560018201600090556002820160006101000a81549060ff021916905550505b50505050565b600660019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614610a6b576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602f815260200180612def602f913960400191505060405180910390fd5b47811115610ac4576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526022815260200180612e4e6022913960400191505060405180910390fd5b600754811115610b1f576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602e815260200180612d90602e913960400191505060405180910390fd5b610b34816007546118c590919063ffffffff16565b600781905550600660019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663d0e30db0826040518263ffffffff1660e01b81526004016000604051808303818588803b158015610ba457600080fd5b505af1158015610bb8573d6000803e3d6000fd5b505050505050565b6000610bca611390565b610be060c860075461190f90919063ffffffff16565b01905090565b505050565b610bfb610bf6611959565b610d59565b610c50576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526030815260200180612e1e6030913960400191505060405180910390fd5b600660009054906101000a900460ff16610cd2576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260148152602001807f5061757361626c653a206e6f742070617573656400000000000000000000000081525060200191505060405180910390fd5b6000600660006101000a81548160ff0219169083151502179055507f5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa610d16611959565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a1565b6000610d6f82600561196190919063ffffffff16565b9050919050565b6000600660009054906101000a900460ff16905090565b610d9d610d98611959565b611a3f565b565b610daf610daa611959565b610d59565b610e04576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526030815260200180612e1e6030913960400191505060405180910390fd5b610e0d81611a99565b50565b610e20610e1b611959565b610d59565b610e75576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526030815260200180612e1e6030913960400191505060405180910390fd5b600660009054906101000a900460ff1615610ef8576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260108152602001807f5061757361626c653a207061757365640000000000000000000000000000000081525060200191505060405180910390fd5b6001600660006101000a81548160ff0219169083151502179055507f62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258610f3c611959565b604051808273ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200191505060405180910390a1565b600660019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b60075481565b600660009054906101000a900460ff161561102e576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825260108152602001807f5061757361626c653a207061757365640000000000000000000000000000000081525060200191505060405180910390fd5b611036610bc0565b34111561108e576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526026815260200180612e706026913960400191505060405180910390fd5b60006110ce6040518060400160405280600c81526020017f576f6c6672616d416c7068610000000000000000000000000000000000000000815250611af3565b9050803411611128576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602d815260200180612f0e602d913960400191505060405180910390fd5b6000813403905060006111a56040518060400160405280600c81526020017f576f6c6672616d416c70686100000000000000000000000000000000000000008152506040518060400160405280601e81526020017f72616e646f6d20696e7465676572206265747765656e203020616e6420300000815250611e84565b905060405180606001604052803373ffffffffffffffffffffffffffffffffffffffff1681526020018381526020018560ff168152506008600083815260200190815260200160002060008201518160000160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506020820151816001015560408201518160020160006101000a81548160ff021916908360ff1602179055509050503373ffffffffffffffffffffffffffffffffffffffff167f214ae1d1aa57aeaec2e90ff231808911a5a626a3c6bc242503a829db732011ce828487604051808481526020018381526020018260ff1660ff168152602001935050505060405180910390a250505050565b600660019054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff163373ffffffffffffffffffffffffffffffffffffffff1614611373576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252602f815260200180612def602f913960400191505060405180910390fd5b611388346007546105bc90919063ffffffff16565b600781905550565b6000660e35fa931a0000905090565b60008073ffffffffffffffffffffffffffffffffffffffff16600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16148061142757506000611425600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166123ca565b145b156114385761143660006123d5565b505b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b1580156114a257600080fd5b505af11580156114b6573d6000803e3d6000fd5b505050506040513d60208110156114cc57600080fd5b810190808051906020019092919050505073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161461161557600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b15801561159a57600080fd5b505af11580156115ae573d6000803e3d6000fd5b505050506040513d60208110156115c457600080fd5b81019080805190602001909291905050506000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663c281d19e6040518163ffffffff1660e01b815260040160206040518083038186803b15801561167c57600080fd5b505afa158015611690573d6000803e3d6000fd5b505050506040513d60208110156116a657600080fd5b8101908080519060200190929190505050905090565b60006116c98260006123e6565b9050919050565b6000808314156116e35760009050611750565b60008284029050828482816116f457fe5b041461174b576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526021815260200180612eed6021913960400191505060405180910390fd5b809150505b92915050565b600081116117af576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526023815260200180612d6d6023913960400191505060405180910390fd5b47811115611808576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526036815260200180612e966036913960400191505060405180910390fd5b61181d816007546118c590919063ffffffff16565b6007819055508273ffffffffffffffffffffffffffffffffffffffff166108fc829081150290604051600060405180830381858888f19350505050158015611869573d6000803e3d6000fd5b508273ffffffffffffffffffffffffffffffffffffffff167f212950d8b6a2784adeaa8e088d070610bdfab9eaef5a7127d90118ec1cf34a618383604051808381526020018281526020019250505060405180910390a2505050565b600061190783836040518060400160405280601e81526020017f536166654d6174683a207375627472616374696f6e206f766572666c6f7700008152506124f9565b905092915050565b600061195183836040518060400160405280601a81526020017f536166654d6174683a206469766973696f6e206279207a65726f0000000000008152506125b9565b905092915050565b600033905090565b60008073ffffffffffffffffffffffffffffffffffffffff168273ffffffffffffffffffffffffffffffffffffffff1614156119e8576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526022815260200180612f3b6022913960400191505060405180910390fd5b8260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060009054906101000a900460ff16905092915050565b611a5381600561267f90919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167fcd265ebaf09df2871cc7bd4133404a235ba12eff2041bb89d9c714a2621c7c7e60405160405180910390a250565b611aad81600561273c90919063ffffffff16565b8073ffffffffffffffffffffffffffffffffffffffff167f6719d08c1888103bea251a4ed56406bd0c3e69723c8a1686e017e7bbe159b6f860405160405180910390a250565b60008073ffffffffffffffffffffffffffffffffffffffff16600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161480611b7b57506000611b79600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166123ca565b145b15611b8c57611b8a60006123d5565b505b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b158015611bf657600080fd5b505af1158015611c0a573d6000803e3d6000fd5b505050506040513d6020811015611c2057600080fd5b810190808051906020019092919050505073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1614611d6957600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b158015611cee57600080fd5b505af1158015611d02573d6000803e3d6000fd5b505050506040513d6020811015611d1857600080fd5b81019080805190602001909291905050506000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663524f3889836040518263ffffffff1660e01b81526004018080602001828103825283818151815260200191508051906020019080838360005b83811015611df6578082015181840152602081019050611ddb565b50505050905090810190601f168015611e235780820380516001836020036101000a031916815260200191505b5092505050602060405180830381600087803b158015611e4257600080fd5b505af1158015611e56573d6000803e3d6000fd5b505050506040513d6020811015611e6c57600080fd5b81019080805190602001909291905050509050919050565b60008073ffffffffffffffffffffffffffffffffffffffff16600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff161480611f0c57506000611f0a600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff166123ca565b145b15611f1d57611f1b60006123d5565b505b600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b158015611f8757600080fd5b505af1158015611f9b573d6000803e3d6000fd5b505050506040513d6020811015611fb157600080fd5b810190808051906020019092919050505073ffffffffffffffffffffffffffffffffffffffff166000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16146120fa57600160009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff166338cc48316040518163ffffffff1660e01b8152600401602060405180830381600087803b15801561207f57600080fd5b505af1158015612093573d6000803e3d6000fd5b505050506040513d60208110156120a957600080fd5b81019080805190602001909291905050506000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055505b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663524f3889856040518263ffffffff1660e01b81526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561218957808201518184015260208101905061216e565b50505050905090810190601f1680156121b65780820380516001836020036101000a031916815260200191505b5092505050602060405180830381600087803b1580156121d557600080fd5b505af11580156121e9573d6000803e3d6000fd5b505050506040513d60208110156121ff57600080fd5b8101908080519060200190929190505050905062030d403a02670de0b6b3a764000001811115612235576000801b9150506123c4565b6000809054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff1663adf59f9982600087876040518563ffffffff1660e01b8152600401808481526020018060200180602001838103835285818151815260200191508051906020019080838360005b838110156122d05780820151818401526020810190506122b5565b50505050905090810190601f1680156122fd5780820380516001836020036101000a031916815260200191505b50838103825284818151815260200191508051906020019080838360005b8381101561233657808201518184015260208101905061231b565b50505050905090810190601f1680156123635780820380516001836020036101000a031916815260200191505b50955050505050506020604051808303818588803b15801561238457600080fd5b505af1158015612398573d6000803e3d6000fd5b50505050506040513d60208110156123af57600080fd5b81019080805190602001909291905050509150505b92915050565b6000813b9050919050565b60006123df612817565b9050919050565b600060608390506000809050600080905060008090505b83518110156124da57603084828151811061241457fe5b602001015160f81c60f81b60f81c60ff16101580156124505750603984828151811061243c57fe5b602001015160f81c60f81b60f81c60ff1611155b156124a2578115612473576000861415612469576124da565b8580600190039650505b600a83029250603084828151811061248757fe5b602001015160f81c60f81b60f81c60ff1603830192506124cd565b602e8482815181106124b057fe5b602001015160f81c60f81b60f81c60ff1614156124cc57600191505b5b80806001019150506123fd565b5060008511156124ed5784600a0a820291505b81935050505092915050565b60008383111582906125a6576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561256b578082015181840152602081019050612550565b50505050905090810190601f1680156125985780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b5060008385039050809150509392505050565b60008083118290612665576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561262a57808201518184015260208101905061260f565b50505050905090810190601f1680156126575780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b50600083858161267157fe5b049050809150509392505050565b6126898282611961565b6126de576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401808060200182810382526021815260200180612ecc6021913960400191505060405180910390fd5b60008260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b6127468282611961565b156127b9576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040180806020018281038252601f8152602001807f526f6c65733a206163636f756e7420616c72656164792068617320726f6c650081525060200191505060405180910390fd5b60018260000160008373ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff16815260200190815260200160002060006101000a81548160ff0219169083151502179055505050565b600080612837731d3b2638a7cc9f2cb3d298a3da7a90b67e5506ed6123ca565b11156128d957731d3b2638a7cc9f2cb3d298a3da7a90b67e5506ed600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506128d06040518060400160405280600b81526020017f6574685f6d61696e6e6574000000000000000000000000000000000000000000815250612cad565b60019050612caa565b60006128f873c03a2615d5efaf5f49f60b7bb6583eaec212fdf16123ca565b111561299a5773c03a2615d5efaf5f49f60b7bb6583eaec212fdf1600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055506129916040518060400160405280600c81526020017f6574685f726f707374656e330000000000000000000000000000000000000000815250612cad565b60019050612caa565b60006129b973b7a07bcf2ba2f2703b24c0691b5278999c59ac7e6123ca565b1115612a5b5773b7a07bcf2ba2f2703b24c0691b5278999c59ac7e600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550612a526040518060400160405280600981526020017f6574685f6b6f76616e0000000000000000000000000000000000000000000000815250612cad565b60019050612caa565b6000612a7a73146500cfd35b22e4a392fe0adc06de1a1368ed486123ca565b1115612b1c5773146500cfd35b22e4a392fe0adc06de1a1368ed48600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550612b136040518060400160405280600b81526020017f6574685f72696e6b656279000000000000000000000000000000000000000000815250612cad565b60019050612caa565b6000612b3b736f485c8bf6fc43ea212e93bbf8ce046c7f1cb4756123ca565b1115612b9f57736f485c8bf6fc43ea212e93bbf8ce046c7f1cb475600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060019050612caa565b6000612bbe7320e12a1f859b3feae5fb2a0a32c18f5a65555bbf6123ca565b1115612c22577320e12a1f859b3feae5fb2a0a32c18f5a65555bbf600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060019050612caa565b6000612c417351efaf4c8b3c9afbd5ab9f4bbc82784ab6ef8faa6123ca565b1115612ca5577351efaf4c8b3c9afbd5ab9f4bbc82784ab6ef8faa600160006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555060019050612caa565b600090505b90565b8060029080519060200190612cc3929190612cc7565b5050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f10612d0857805160ff1916838001178555612d36565b82800160010185558215612d36579182015b82811115612d35578251825591602001919060010190612d1a565b5b509050612d439190612d47565b5090565b612d6991905b80821115612d65576000816000905550600101612d4d565b5090565b9056fe5061796f757420616d6f756e742073686f756c64206265206d6f7265207468616e203043616e206e6f74207769746864726177206d6f7265207468616e2062616c616e636520666f72206261636b696e6743616e206f6e6c792062652063616c6c65642066726f6d206f7261636c697a652063616c6c6261636b206164647265737343616e206f6e6c792062652063616c6c656420627920746865206261636b656420746f6b656e20636f6e7472616374506175736572526f6c653a2063616c6c657220646f6573206e6f742068617665207468652050617573657220726f6c6543616e206e6f74207769746864726177206d6f7265207468616e2062616c616e636542657420616d6f756e742063616e206e6f7420657863656564206d6178206265742073697a655061796f757420616d6f756e742073686f756c64206e6f74206265206d6f7265207468616e20636f6e74726163742062616c616e6365526f6c65733a206163636f756e7420646f6573206e6f74206861766520726f6c65536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f7742657420616d6f756e742073686f756c6420626520686967686572207468616e206f7261636c697a6520666565526f6c65733a206163636f756e7420697320746865207a65726f2061646472657373a265627a7a72315820e1cb3697047a77eb0d9ddeeb56b68a3d9cae66da483944e7f9a86ccefb4126f064736f6c63430005100032",
+  "sourceMap": "274:944:12:-;;;321:78;8:9:-1;5:2;;;30:1;27;20:12;5:2;321:78:12;;;;;;;;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;321:78:12;;;;;;;;;;;;;;;;374:14;797::11;318:24:2;329:12;:10;;;:12;;:::i;:::-;318:10;;;:24;;:::i;:::-;1023:5:3;1013:7;;:15;;;;;;;;;;;;;;;;;;954:18:8;928:11;;:45;;;;;;;;;;;;;;;;;;984:11;;;;;;;;;;;:16;;;1009:4;984:31;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;984:31:8;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;984:31:8;;;;862:161;737:85:11;321:78:12;274:944;;788:96:0;833:15;867:10;860:17;;788:96;:::o;786:119:2:-;842:21;855:7;842:8;:12;;;;;;:21;;;;:::i;:::-;890:7;878:20;;;;;;;;;;;;786:119;:::o;260:175:1:-;337:18;341:4;347:7;337:3;;;:18;;:::i;:::-;336:19;328:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;424:4;401;:11;;:20;413:7;401:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;260:175;;:::o;779:200::-;851:4;894:1;875:21;;:7;:21;;;;867:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;952:4;:11;;:20;964:7;952:20;;;;;;;;;;;;;;;;;;;;;;;;;945:27;;779:200;;;;:::o;274:944:12:-;;;;;;;",
+  "deployedSourceMap": "274:944:12:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;668:32:8;690:9;668:17;;:21;;:32;;;;:::i;:::-;648:17;:52;;;;274:944:12;2210:892:11;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2210:892:11;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;2210:892:11;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;2210:892:11;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;2210:892:11;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;2210:892:11;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;2210:892:11;;;;;;;;;;;;;;;:::i;:::-;;1529:374:8;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1529:374:8;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;1529:374:8;;;;;;;;;;;;;;;;;:::i;:::-;;4077:124:11;;8:9:-1;5:2;;;30:1;27;20:12;5:2;4077:124:11;;;:::i;:::-;;;;;;;;;;;;;;;;;;;15299:169:13;;8:9:-1;5:2;;;30:1;27;20:12;5:2;15299:169:13;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;15299:169:13;;;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;15299:169:13;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;15299:169:13;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;15299:169:13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;15299:169:13;;;;;;;;;;;;;;;;;21:11:-1;8;5:28;2:2;;;46:1;43;36:12;2:2;15299:169:13;;35:9:-1;28:4;12:14;8:25;5:40;2:2;;;58:1;55;48:12;2:2;15299:169:13;;;;;;100:9:-1;95:1;81:12;77:20;67:8;63:35;60:50;39:11;25:12;22:29;11:107;8:2;;;131:1;128;121:12;8:2;15299:169:13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;30:3:-1;22:6;14;1:33;99:1;93:3;85:6;81:16;74:27;137:4;133:9;126:4;121:3;117:14;113:30;106:37;;169:3;161:6;157:16;147:26;;15299:169:13;;;;;;;;;;;;;;;:::i;:::-;;1892:117:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1892:117:3;;;:::i;:::-;;494:107:2;;8:9:-1;5:2;;;30:1;27;20:12;5:2;494:107:2;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;494:107:2;;;;;;;;;;;;;;;;;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;1130:76:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1130:76:3;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;703:77:2;;8:9:-1;5:2;;;30:1;27;20:12;5:2;703:77:2;;;:::i;:::-;;607:90;;8:9:-1;5:2;;;30:1;27;20:12;5:2;607:90:2;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;607:90:2;;;;;;;;;;;;;;;;;;;:::i;:::-;;1687:115:3;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1687:115:3;;;:::i;:::-;;270:30:8;;8:9:-1;5:2;;;30:1;27;20:12;5:2;270:30:8;;;:::i;:::-;;;;;;;;;;;;;;;;;;;;;;;307:32;;8:9:-1;5:2;;;30:1;27;20:12;5:2;307:32:8;;;:::i;:::-;;;;;;;;;;;;;;;;;;;561:654:12;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;561:654:12;;;;;;;;;;;;;;;;;;;:::i;:::-;;1184:123:8;;;:::i;:::-;;4333:98:11;;8:9:-1;5:2;;;30:1;27;20:12;5:2;4333:98:11;;;:::i;:::-;;;;;;;;;;;;;;;;;;;834:176:4;892:7;911:9;927:1;923;:5;911:17;;951:1;946;:6;;938:46;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1002:1;995:8;;;834:176;;;;:::o;2210:892:11:-;2305:20;:18;:20::i;:::-;2291:34;;:10;:34;;;2283:96;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2429:1;2398:33;;:7;:12;2406:3;2398:12;;;;;;;;;;;:19;;;;;;;;;;;;:33;;;;2390:78;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2481:19;2509:16;2518:6;2509:8;:16::i;:::-;2481:45;;2537:29;2569:7;:12;2577:3;2569:12;;;;;;;;;;;2537:44;;2604:10;:17;;;;;;;;;;;;2599:85;;;2623:3;2628:10;:18;;;2648:10;:20;;;;;;;;;;;;2670:13;2599:85;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2715:41;2737:10;:18;;;2715:17;;:21;;:41;;;;:::i;:::-;2695:17;:61;;;;2797:13;2773:37;;:10;:20;;;;;;;;;;;;:37;;;2769:326;;;2827:29;2859:10;:17;;;;;;;;;;;;2827:49;;2891:20;2914:26;2937:2;2914:10;:18;;;:22;;:26;;;;:::i;:::-;2891:49;;2962:7;:12;2970:3;2962:12;;;;;;;;;;;;2955:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2991:40;2998:13;3013:3;3018:12;2991:6;:40::i;:::-;2769:326;;;;;3071:7;:12;3079:3;3071:12;;;;;;;;;;;;3064:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2769:326;2210:892;;;;:::o;1529:374:8:-;416:11;;;;;;;;;;;394:34;;:10;:34;;;386:94;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1623:21;1610:9;:34;;1602:81;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1715:17;;1702:9;:30;;1694:89;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1814:32;1836:9;1814:17;;:21;;:32;;;;:::i;:::-;1794:17;:52;;;;1857:11;;;;;;;;;;;:19;;;1883:9;1857:38;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1857:38:8;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;1857:38:8;;;;;1529:374;:::o;4077:124:11:-;4116:7;4172:21;:19;:21::i;:::-;4143:26;4165:3;4143:17;;:21;;:26;;;;:::i;:::-;:50;4136:57;;4077:124;:::o;15299:169:13:-;;;;:::o;1892:117:3:-;395:22:2;404:12;:10;:12::i;:::-;395:8;:22::i;:::-;387:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1550:7:3;;;;;;;;;;;1542:40;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1960:5;1950:7;;:15;;;;;;;;;;;;;;;;;;1980:22;1989:12;:10;:12::i;:::-;1980:22;;;;;;;;;;;;;;;;;;;;;;1892:117::o;494:107:2:-;550:4;573:21;586:7;573:8;:12;;:21;;;;:::i;:::-;566:28;;494:107;;;:::o;1130:76:3:-;1169:4;1192:7;;;;;;;;;;;1185:14;;1130:76;:::o;703:77:2:-;746:27;760:12;:10;:12::i;:::-;746:13;:27::i;:::-;703:77::o;607:90::-;395:22;404:12;:10;:12::i;:::-;395:8;:22::i;:::-;387:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;671:19;682:7;671:10;:19::i;:::-;607:90;:::o;1687:115:3:-;395:22:2;404:12;:10;:12::i;:::-;395:8;:22::i;:::-;387:83;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1359:7:3;;;;;;;;;;;1358:8;1350:37;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1756:4;1746:7;;:14;;;;;;;;;;;;;;;;;;1775:20;1782:12;:10;:12::i;:::-;1775:20;;;;;;;;;;;;;;;;;;;;;;1687:115::o;270:30:8:-;;;;;;;;;;;;;:::o;307:32::-;;;;:::o;561:654:12:-;1359:7:3;;;;;;;;;;;1358:8;1350:37;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;651:8:12;:6;:8::i;:::-;638:9;:21;;630:72;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;715:19;737:33;;;;;;;;;;;;;;;;;;:17;:33::i;:::-;715:55;;801:11;789:9;:23;781:81;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;875:16;906:11;894:9;:23;875:42;;930:11;944:64;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:14;:64::i;:::-;930:78;;1113:40;;;;;;;;1124:10;1113:40;;;;;;1136:8;1113:40;;;;1146:6;1113:40;;;;;1098:7;:12;1106:3;1098:12;;;;;;;;;;;:55;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1173:10;1169:38;;;1185:3;1190:8;1200:6;1169:38;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1397:1:3;;;561:654:12;:::o;1184:123:8:-;416:11;;;;;;;;;;;394:34;;:10;:34;;;386:94;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1267:32;1289:9;1267:17;;:21;;:32;;;;:::i;:::-;1247:17;:52;;;;1184:123::o;4333:98:11:-;4385:7;4412:11;4405:18;;4333:98;:::o;37493:132:13:-;37553:24;12130:1;12106:26;;12114:3;;;;;;;;;;;12106:26;;;12105:64;;;;12167:1;12138:25;12158:3;;;;;;;;;;;12138:11;:25::i;:::-;:30;12105:64;12101:132;;;12186:35;11752:1;12186:19;:35::i;:::-;;12101:132;12268:3;;;;;;;;;;;:14;;;:16;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;12268:16:13;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;12268:16:13;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;12268:16:13;;;;;;;;;;;;;;;;12247:37;;12255:8;;;;;;;;;;;12247:37;;;12243:108;;12322:3;;;;;;;;;;;:14;;;:16;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;12322:16:13;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;12322:16:13;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;12322:16:13;;;;;;;;;;;;;;;;12301:8;;:38;;;;;;;;;;;;;;;;;;12243:108;37597:8;;;;;;;;;;;:18;;;:20;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;37597:20:13;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;37597:20:13;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;37597:20:13;;;;;;;;;;;;;;;;37590:27;;37493:132;:::o;43354:117::-;43413:15;43448;43457:2;43461:1;43448:8;:15::i;:::-;43441:22;;43354:117;;;:::o;2159:459:4:-;2217:7;2463:1;2458;:6;2454:45;;;2487:1;2480:8;;;;2454:45;2509:9;2525:1;2521;:5;2509:17;;2553:1;2548;2544;:5;;;;;;:10;2536:56;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2610:1;2603:8;;;2159:459;;;;;:::o;3457:413:11:-;3555:1;3546:6;:10;3538:58;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3625:21;3615:6;:31;;3607:98;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3738:29;3760:6;3738:17;;:21;;:29;;;;:::i;:::-;3718:17;:49;;;;3794:6;3778:33;;:41;3812:6;3778:41;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;3778:41:11;3842:6;3835:27;;;3850:3;3855:6;3835:27;;;;;;;;;;;;;;;;;;;;;;;;3457:413;;;:::o;1274:134:4:-;1332:7;1358:43;1362:1;1365;1358:43;;;;;;;;;;;;;;;;;:3;:43::i;:::-;1351:50;;1274:134;;;;:::o;3073:130::-;3131:7;3157:39;3161:1;3164;3157:39;;;;;;;;;;;;;;;;;:3;:39::i;:::-;3150:46;;3073:130;;;;:::o;788:96:0:-;833:15;867:10;860:17;;788:96;:::o;779:200:1:-;851:4;894:1;875:21;;:7;:21;;;;867:68;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;952:4;:11;;:20;964:7;952:20;;;;;;;;;;;;;;;;;;;;;;;;;945:27;;779:200;;;;:::o;911:127:2:-;970:24;986:7;970:8;:15;;:24;;;;:::i;:::-;1023:7;1009:22;;;;;;;;;;;;911:127;:::o;786:119::-;842:21;855:7;842:8;:12;;:21;;;;:::i;:::-;890:7;878:20;;;;;;;;;;;;786:119;:::o;15476:158:13:-;15560:16;12130:1;12106:26;;12114:3;;;;;;;;;;;12106:26;;;12105:64;;;;12167:1;12138:25;12158:3;;;;;;;;;;;12138:11;:25::i;:::-;:30;12105:64;12101:132;;;12186:35;11752:1;12186:19;:35::i;:::-;;12101:132;12268:3;;;;;;;;;;;:14;;;:16;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;12268:16:13;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;12268:16:13;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;12268:16:13;;;;;;;;;;;;;;;;12247:37;;12255:8;;;;;;;;;;;12247:37;;;12243:108;;12322:3;;;;;;;;;;;:14;;;:16;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;12322:16:13;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;12322:16:13;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;12322:16:13;;;;;;;;;;;;;;;;12301:8;;:38;;;;;;;;;;;;;;;;;;12243:108;15596:8;;;;;;;;;;;:17;;;15614:11;15596:30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;15596:30:13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;15596:30:13;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;15596:30:13;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;15596:30:13;;;;;;;;;;;;;;;;15589:37;;15476:158;;;:::o;15835:359::-;15936:11;12130:1;12106:26;;12114:3;;;;;;;;;;;12106:26;;;12105:64;;;;12167:1;12138:25;12158:3;;;;;;;;;;;12138:11;:25::i;:::-;:30;12105:64;12101:132;;;12186:35;11752:1;12186:19;:35::i;:::-;;12101:132;12268:3;;;;;;;;;;;:14;;;:16;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;12268:16:13;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;12268:16:13;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;12268:16:13;;;;;;;;;;;;;;;;12247:37;;12255:8;;;;;;;;;;;12247:37;;;12243:108;;12322:3;;;;;;;;;;;:14;;;:16;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;12322:16:13;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;12322:16:13;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;12322:16:13;;;;;;;;;;;;;;;;12301:8;;:38;;;;;;;;;;;;;;;;;;12243:108;15960:10;15973:8;;;;;;;;;;;:17;;;15991:11;15973:30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;15973:30:13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;15973:30:13;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;15973:30:13;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;15973:30:13;;;;;;;;;;;;;;;;15960:43;;16050:6;16036:11;:20;16026:7;:30;16018:5;:38;16014:106;;;16080:1;16073:8;;;;;;;16014:106;16137:8;;;;;;;;;;;:14;;;16158:5;16165:1;16168:11;16181:4;16137:49;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;16137:49:13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;16137:49:13;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;16137:49:13;;;;8:9:-1;5:2;;;45:16;42:1;39;24:38;77:16;74:1;67:27;5:2;16137:49:13;;;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;16137:49:13;;;;;;;;;;;;;;;;16130:56;;;12361:1;15835:359;;;;:::o;37633:151::-;37692:10;37760:5;37748:18;37739:27;;37724:53;;;:::o;12855:202::-;12920:16;12954:21;:19;:21::i;:::-;12947:28;;12855:202;;;:::o;43479:819::-;43547:15;43575:20;43604:2;43575:32;;43618:9;43630:1;43618:13;;43642;43658:5;43642:21;;43679:6;43688:1;43679:10;;43674:530;43695:7;:14;43691:1;:18;43674:530;;;43763:2;43747:7;43755:1;43747:10;;;;;;;;;;;;;;;;43741:17;;43736:23;;:29;;43735:66;;;;;43798:2;43782:7;43790:1;43782:10;;;;;;;;;;;;;;;;43776:17;;43771:23;;:29;;43735:66;43731:462;;;43826:8;43822:181;;;43868:1;43862:2;:7;43858:126;;;43897:5;;43858:126;43957:4;;;;;;;;43822:181;44029:2;44021:10;;;;44084:2;44069:7;44077:1;44069:10;;;;;;;;;;;;;;;;44063:17;;44058:23;;:28;44050:36;;;;43731:462;;;44139:2;44123:7;44131:1;44123:10;;;;;;;;;;;;;;;;44117:17;;44112:23;;:29;44108:85;;;44173:4;44162:15;;44108:85;43731:462;43711:3;;;;;;;43674:530;;;;44223:1;44218:2;:6;44214:55;;;44255:2;44249;:8;44241:16;;;;44214:55;44286:4;44279:11;;;;;43479:819;;;;:::o;1732:187:4:-;1818:7;1850:1;1845;:6;;1853:12;1837:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1837:29:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1876:9;1892:1;1888;:5;1876:17;;1911:1;1904:8;;;1732:187;;;;;:::o;3718:338::-;3804:7;3901:1;3897;:5;3904:12;3889:28;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;3889:28:4;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;3927:9;3943:1;3939;:5;;;;;;3927:17;;4048:1;4041:8;;;3718:338;;;;;:::o;510:180:1:-;589:18;593:4;599:7;589:3;:18::i;:::-;581:64;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;678:5;655:4;:11;;:20;667:7;655:20;;;;;;;;;;;;;;;;:28;;;;;;;;;;;;;;;;;;510:180;;:::o;260:175::-;337:18;341:4;347:7;337:3;:18::i;:::-;336:19;328:63;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;424:4;401;:11;;:20;413:7;401:20;;;;;;;;;;;;;;;;:27;;;;;;;;;;;;;;;;;;260:175;;:::o;13341:1818:13:-;13390:16;13481:1;13423:55;13435:42;13423:11;:55::i;:::-;:59;13419:252;;;13537:42;13509:3;;:71;;;;;;;;;;;;;;;;;;13595:38;;;;;;;;;;;;;;;;;;:23;:38::i;:::-;13655:4;13648:11;;;;13419:252;13743:1;13685:55;13697:42;13685:11;:55::i;:::-;:59;13681:261;;;13807:42;13779:3;;:71;;;;;;;;;;;;;;;;;;13865:39;;;;;;;;;;;;;;;;;;:23;:39::i;:::-;13926:4;13919:11;;;;13681:261;14014:1;13956:55;13968:42;13956:11;:55::i;:::-;:59;13952:256;;;14076:42;14048:3;;:71;;;;;;;;;;;;;;;;;;14134:36;;;;;;;;;;;;;;;;;;:23;:36::i;:::-;14192:4;14185:11;;;;13952:256;14280:1;14222:55;14234:42;14222:11;:55::i;:::-;:59;14218:260;;;14344:42;14316:3;;:71;;;;;;;;;;;;;;;;;;14402:38;;;;;;;;;;;;;;;;;;:23;:38::i;:::-;14462:4;14455:11;;;;14218:260;14550:1;14492:55;14504:42;14492:11;:55::i;:::-;:59;14488:207;;;14614:42;14586:3;;:71;;;;;;;;;;;;;;;;;;14679:4;14672:11;;;;14488:207;14767:1;14709:55;14721:42;14709:11;:55::i;:::-;:59;14705:206;;;14830:42;14802:3;;:71;;;;;;;;;;;;;;;;;;14895:4;14888:11;;;;14705:206;14983:1;14925:55;14937:42;14925:11;:55::i;:::-;:59;14921:208;;;15048:42;15020:3;;:71;;;;;;;;;;;;;;;;;;15113:4;15106:11;;;;14921:208;15146:5;15139:12;;13341:1818;;:::o;13065:127::-;13171:13;13147:21;:37;;;;;;;;;;;;:::i;:::-;;13065:127;:::o;274:944:12:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.5.0;\r\n\r\nimport \"./Roulette.sol\";\r\n\r\n/**\r\n * @title RouletteForTesting\r\n * @author Rosco Kalis <roscokalis@gmail.com>\r\n * @dev This contract extends the Roulette contract, but with deterministic win conditions,\r\n * to test the betting functionality.\r\n */\r\ncontract RouletteForTesting is Roulette {\r\n    constructor(address payable roscoinAddress) Roulette(roscoinAddress) public {}\r\n\r\n    /**\r\n     * @notice Overrides the existing bet function, always takes 1 as winning number.\r\n     * @param number The number that is bet on.\r\n     */\r\n    function bet(uint8 number) external payable whenNotPaused {\r\n        require(msg.value <= maxBet(), \"Bet amount can not exceed max bet size\");\r\n\r\n        uint256 oraclizeFee = oraclize_getPrice(\"WolframAlpha\");\r\n        require(msg.value > oraclizeFee, \"Bet amount should be higher than oraclize fee\");\r\n\r\n        uint256 betValue = msg.value - oraclizeFee;\r\n\r\n        bytes32 qid = oraclize_query(\"WolframAlpha\", \"random integer between 0 and 0\");\r\n\r\n        /* Store a player's info to retrieve it in the oraclize callback */\r\n        players[qid] = PlayerInfo(msg.sender, betValue, number);\r\n        emit Bet(msg.sender, qid, betValue, number);\r\n    }\r\n}\r\n",
+  "sourcePath": "D:\\MyData\\mywork\\Tasks\\angular\\2022-2-19\\ethroulette\\contracts\\RouletteForTesting.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/RouletteForTesting.sol",
+    "exportedSymbols": {
+      "RouletteForTesting": [
+        1812
+      ]
+    },
+    "id": 1813,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1735,
+        "literals": [
+          "solidity",
+          "^",
+          "0.5",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:23:12"
+      },
+      {
+        "absolutePath": "project:/contracts/Roulette.sol",
+        "file": "./Roulette.sol",
+        "id": 1736,
+        "nodeType": "ImportDirective",
+        "scope": 1813,
+        "sourceUnit": 1734,
+        "src": "27:24:12",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 1737,
+              "name": "Roulette",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 1733,
+              "src": "305:8:12",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Roulette_$1733",
+                "typeString": "contract Roulette"
+              }
+            },
+            "id": 1738,
+            "nodeType": "InheritanceSpecifier",
+            "src": "305:8:12"
+          }
+        ],
+        "contractDependencies": [
+          26,
+          214,
+          302,
+          1366,
+          1733,
+          8080
+        ],
+        "contractKind": "contract",
+        "documentation": "@title RouletteForTesting\n@author Rosco Kalis <roscokalis@gmail.com>\n@dev This contract extends the Roulette contract, but with deterministic win conditions,\nto test the betting functionality.",
+        "fullyImplemented": true,
+        "id": 1812,
+        "linearizedBaseContracts": [
+          1812,
+          1733,
+          1366,
+          302,
+          214,
+          26,
+          8080
+        ],
+        "name": "RouletteForTesting",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 1746,
+              "nodeType": "Block",
+              "src": "397:2:12",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 1747,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [
+              {
+                "arguments": [
+                  {
+                    "argumentTypes": null,
+                    "id": 1743,
+                    "name": "roscoinAddress",
+                    "nodeType": "Identifier",
+                    "overloadedDeclarations": [],
+                    "referencedDeclaration": 1740,
+                    "src": "374:14:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  }
+                ],
+                "id": 1744,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 1742,
+                  "name": "Roulette",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 1733,
+                  "src": "365:8:12",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_type$_t_contract$_Roulette_$1733_$",
+                    "typeString": "type(contract Roulette)"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "365:24:12"
+              }
+            ],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1741,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1740,
+                  "name": "roscoinAddress",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1747,
+                  "src": "333:30:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address_payable",
+                    "typeString": "address payable"
+                  },
+                  "typeName": {
+                    "id": 1739,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "333:15:12",
+                    "stateMutability": "payable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address_payable",
+                      "typeString": "address payable"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "332:32:12"
+            },
+            "returnParameters": {
+              "id": 1745,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "397:0:12"
+            },
+            "scope": 1812,
+            "src": "321:78:12",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 1810,
+              "nodeType": "Block",
+              "src": "619:596:12",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 1759,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 1755,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 8095,
+                            "src": "638:3:12",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 1756,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "638:9:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": "<=",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "arguments": [],
+                          "expression": {
+                            "argumentTypes": [],
+                            "id": 1757,
+                            "name": "maxBet",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 1724,
+                            "src": "651:6:12",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_function_internal_view$__$returns$_t_uint256_$",
+                              "typeString": "function () view returns (uint256)"
+                            }
+                          },
+                          "id": 1758,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "kind": "functionCall",
+                          "lValueRequested": false,
+                          "names": [],
+                          "nodeType": "FunctionCall",
+                          "src": "651:8:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "src": "638:21:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "42657420616d6f756e742063616e206e6f7420657863656564206d6178206265742073697a65",
+                        "id": 1760,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "661:40:12",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_2ea72281d4cb18f26b4db8aff3b88b8f2f00e50c75f5a430e80aa4712e748764",
+                          "typeString": "literal_string \"Bet amount can not exceed max bet size\""
+                        },
+                        "value": "Bet amount can not exceed max bet size"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_2ea72281d4cb18f26b4db8aff3b88b8f2f00e50c75f5a430e80aa4712e748764",
+                          "typeString": "literal_string \"Bet amount can not exceed max bet size\""
+                        }
+                      ],
+                      "id": 1754,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        8098,
+                        8099
+                      ],
+                      "referencedDeclaration": 8099,
+                      "src": "630:7:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 1761,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "630:72:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1762,
+                  "nodeType": "ExpressionStatement",
+                  "src": "630:72:12"
+                },
+                {
+                  "assignments": [
+                    1764
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1764,
+                      "name": "oraclizeFee",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1810,
+                      "src": "715:19:12",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 1763,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "715:7:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1768,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "576f6c6672616d416c706861",
+                        "id": 1766,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "755:14:12",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_21eff6db3cf423de70b78939a0b320a09532e53b36d8e49779bb3d382f433753",
+                          "typeString": "literal_string \"WolframAlpha\""
+                        },
+                        "value": "WolframAlpha"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_21eff6db3cf423de70b78939a0b320a09532e53b36d8e49779bb3d382f433753",
+                          "typeString": "literal_string \"WolframAlpha\""
+                        }
+                      ],
+                      "id": 1765,
+                      "name": "oraclize_getPrice",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        2848,
+                        2866
+                      ],
+                      "referencedDeclaration": 2848,
+                      "src": "737:17:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_string_memory_ptr_$returns$_t_uint256_$",
+                        "typeString": "function (string memory) returns (uint256)"
+                      }
+                    },
+                    "id": 1767,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "737:33:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "715:55:12"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "commonType": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        "id": 1773,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "leftExpression": {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 1770,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 8095,
+                            "src": "789:3:12",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 1771,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "value",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "789:9:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "nodeType": "BinaryOperation",
+                        "operator": ">",
+                        "rightExpression": {
+                          "argumentTypes": null,
+                          "id": 1772,
+                          "name": "oraclizeFee",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1764,
+                          "src": "801:11:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        "src": "789:23:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "42657420616d6f756e742073686f756c6420626520686967686572207468616e206f7261636c697a6520666565",
+                        "id": 1774,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "814:47:12",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_98eea70b75a595b66958bc23d3bea1922e7a685eedbc13e7256cf9e9ab374561",
+                          "typeString": "literal_string \"Bet amount should be higher than oraclize fee\""
+                        },
+                        "value": "Bet amount should be higher than oraclize fee"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_bool",
+                          "typeString": "bool"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_98eea70b75a595b66958bc23d3bea1922e7a685eedbc13e7256cf9e9ab374561",
+                          "typeString": "literal_string \"Bet amount should be higher than oraclize fee\""
+                        }
+                      ],
+                      "id": 1769,
+                      "name": "require",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        8098,
+                        8099
+                      ],
+                      "referencedDeclaration": 8099,
+                      "src": "781:7:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
+                        "typeString": "function (bool,string memory) pure"
+                      }
+                    },
+                    "id": 1775,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "781:81:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1776,
+                  "nodeType": "ExpressionStatement",
+                  "src": "781:81:12"
+                },
+                {
+                  "assignments": [
+                    1778
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1778,
+                      "name": "betValue",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1810,
+                      "src": "875:16:12",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      },
+                      "typeName": {
+                        "id": 1777,
+                        "name": "uint256",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "875:7:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1783,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    },
+                    "id": 1782,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "expression": {
+                        "argumentTypes": null,
+                        "id": 1779,
+                        "name": "msg",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 8095,
+                        "src": "894:3:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_magic_message",
+                          "typeString": "msg"
+                        }
+                      },
+                      "id": 1780,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "value",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "894:9:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "-",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "id": 1781,
+                      "name": "oraclizeFee",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1764,
+                      "src": "906:11:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint256",
+                        "typeString": "uint256"
+                      }
+                    },
+                    "src": "894:23:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "875:42:12"
+                },
+                {
+                  "assignments": [
+                    1785
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 1785,
+                      "name": "qid",
+                      "nodeType": "VariableDeclaration",
+                      "scope": 1810,
+                      "src": "930:11:12",
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bytes32",
+                        "typeString": "bytes32"
+                      },
+                      "typeName": {
+                        "id": 1784,
+                        "name": "bytes32",
+                        "nodeType": "ElementaryTypeName",
+                        "src": "930:7:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 1790,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "576f6c6672616d416c706861",
+                        "id": 1787,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "959:14:12",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_21eff6db3cf423de70b78939a0b320a09532e53b36d8e49779bb3d382f433753",
+                          "typeString": "literal_string \"WolframAlpha\""
+                        },
+                        "value": "WolframAlpha"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "72616e646f6d20696e7465676572206265747765656e203020616e642030",
+                        "id": 1788,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "975:32:12",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_765bcca0276a334bea1890478f7f2114d2f4f9553b25f1b8019b47c6c2c8e7ac",
+                          "typeString": "literal_string \"random integer between 0 and 0\""
+                        },
+                        "value": "random integer between 0 and 0"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_stringliteral_21eff6db3cf423de70b78939a0b320a09532e53b36d8e49779bb3d382f433753",
+                          "typeString": "literal_string \"WolframAlpha\""
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_765bcca0276a334bea1890478f7f2114d2f4f9553b25f1b8019b47c6c2c8e7ac",
+                          "typeString": "literal_string \"random integer between 0 and 0\""
+                        }
+                      ],
+                      "id": 1786,
+                      "name": "oraclize_query",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [
+                        2907,
+                        2950,
+                        2997,
+                        3042,
+                        3086,
+                        3132,
+                        3182,
+                        3230,
+                        3278,
+                        3328,
+                        3382,
+                        3434,
+                        3471,
+                        3511,
+                        3554,
+                        3594,
+                        3639,
+                        3687,
+                        3738,
+                        3786,
+                        3839,
+                        3895,
+                        3954,
+                        4010,
+                        4071,
+                        4135,
+                        4202,
+                        4266,
+                        4335,
+                        4407,
+                        4482,
+                        4554,
+                        4602,
+                        4652,
+                        4706,
+                        4758,
+                        4795,
+                        4835,
+                        4878,
+                        4918,
+                        4963,
+                        5011,
+                        5062,
+                        5110,
+                        5163,
+                        5219,
+                        5278,
+                        5334,
+                        5395,
+                        5459,
+                        5526,
+                        5590,
+                        5659,
+                        5731,
+                        5806,
+                        5878
+                      ],
+                      "referencedDeclaration": 2907,
+                      "src": "944:14:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_internal_nonpayable$_t_string_memory_ptr_$_t_string_memory_ptr_$returns$_t_bytes32_$",
+                        "typeString": "function (string memory,string memory) returns (bytes32)"
+                      }
+                    },
+                    "id": 1789,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "944:64:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "930:78:12"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "id": 1800,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftHandSide": {
+                      "argumentTypes": null,
+                      "baseExpression": {
+                        "argumentTypes": null,
+                        "id": 1791,
+                        "name": "players",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1460,
+                        "src": "1098:7:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_mapping$_t_bytes32_$_t_struct$_PlayerInfo_$1456_storage_$",
+                          "typeString": "mapping(bytes32 => struct Roulette.PlayerInfo storage ref)"
+                        }
+                      },
+                      "id": 1793,
+                      "indexExpression": {
+                        "argumentTypes": null,
+                        "id": 1792,
+                        "name": "qid",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1785,
+                        "src": "1106:3:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      "isConstant": false,
+                      "isLValue": true,
+                      "isPure": false,
+                      "lValueRequested": true,
+                      "nodeType": "IndexAccess",
+                      "src": "1098:12:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_PlayerInfo_$1456_storage",
+                        "typeString": "struct Roulette.PlayerInfo storage ref"
+                      }
+                    },
+                    "nodeType": "Assignment",
+                    "operator": "=",
+                    "rightHandSide": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 1795,
+                            "name": "msg",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 8095,
+                            "src": "1124:3:12",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_magic_message",
+                              "typeString": "msg"
+                            }
+                          },
+                          "id": 1796,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "memberName": "sender",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1124:10:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 1797,
+                          "name": "betValue",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1778,
+                          "src": "1136:8:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          }
+                        },
+                        {
+                          "argumentTypes": null,
+                          "id": 1798,
+                          "name": "number",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 1749,
+                          "src": "1146:6:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_address_payable",
+                            "typeString": "address payable"
+                          },
+                          {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          {
+                            "typeIdentifier": "t_uint8",
+                            "typeString": "uint8"
+                          }
+                        ],
+                        "id": 1794,
+                        "name": "PlayerInfo",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1456,
+                        "src": "1113:10:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_struct$_PlayerInfo_$1456_storage_ptr_$",
+                          "typeString": "type(struct Roulette.PlayerInfo storage pointer)"
+                        }
+                      },
+                      "id": 1799,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "kind": "structConstructorCall",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1113:40:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_PlayerInfo_$1456_memory",
+                        "typeString": "struct Roulette.PlayerInfo memory"
+                      }
+                    },
+                    "src": "1098:55:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_PlayerInfo_$1456_storage",
+                      "typeString": "struct Roulette.PlayerInfo storage ref"
+                    }
+                  },
+                  "id": 1801,
+                  "nodeType": "ExpressionStatement",
+                  "src": "1098:55:12"
+                },
+                {
+                  "eventCall": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 1803,
+                          "name": "msg",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 8095,
+                          "src": "1173:3:12",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_magic_message",
+                            "typeString": "msg"
+                          }
+                        },
+                        "id": 1804,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "memberName": "sender",
+                        "nodeType": "MemberAccess",
+                        "referencedDeclaration": null,
+                        "src": "1173:10:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1805,
+                        "name": "qid",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1785,
+                        "src": "1185:3:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1806,
+                        "name": "betValue",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1778,
+                        "src": "1190:8:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "id": 1807,
+                        "name": "number",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 1749,
+                        "src": "1200:6:12",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_address_payable",
+                          "typeString": "address payable"
+                        },
+                        {
+                          "typeIdentifier": "t_bytes32",
+                          "typeString": "bytes32"
+                        },
+                        {
+                          "typeIdentifier": "t_uint256",
+                          "typeString": "uint256"
+                        },
+                        {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      ],
+                      "id": 1802,
+                      "name": "Bet",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 1470,
+                      "src": "1169:3:12",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_event_nonpayable$_t_address_$_t_bytes32_$_t_uint256_$_t_uint8_$returns$__$",
+                        "typeString": "function (address,bytes32,uint256,uint8)"
+                      }
+                    },
+                    "id": 1808,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "1169:38:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 1809,
+                  "nodeType": "EmitStatement",
+                  "src": "1164:43:12"
+                }
+              ]
+            },
+            "documentation": "@notice Overrides the existing bet function, always takes 1 as winning number.\n@param number The number that is bet on.",
+            "id": 1811,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [
+              {
+                "arguments": null,
+                "id": 1752,
+                "modifierName": {
+                  "argumentTypes": null,
+                  "id": 1751,
+                  "name": "whenNotPaused",
+                  "nodeType": "Identifier",
+                  "overloadedDeclarations": [],
+                  "referencedDeclaration": 258,
+                  "src": "605:13:12",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_modifier$__$",
+                    "typeString": "modifier ()"
+                  }
+                },
+                "nodeType": "ModifierInvocation",
+                "src": "605:13:12"
+              }
+            ],
+            "name": "bet",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 1750,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 1749,
+                  "name": "number",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 1811,
+                  "src": "574:12:12",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 1748,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "574:5:12",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "573:14:12"
+            },
+            "returnParameters": {
+              "id": 1753,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "619:0:12"
+            },
+            "scope": 1812,
+            "src": "561:654:12",
+            "stateMutability": "payable",
+            "superFunction": 1563,
+            "visibility": "external"
+          }
+        ],
+        "scope": 1813,
+        "src": "274:944:12"
+      }
+    ],
+    "src": "0:1220:12"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/RouletteForTesting.sol",
+      "exportedSymbols": {
+        "RouletteForTesting": [
+          1812
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "^",
+            "0.5",
+            ".0"
+          ]
+        },
+        "id": 1735,
+        "name": "PragmaDirective",
+        "src": "0:23:12"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 1734,
+          "absolutePath": "project:/contracts/Roulette.sol",
+          "file": "./Roulette.sol",
+          "scope": 1813,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 1736,
+        "name": "ImportDirective",
+        "src": "27:24:12"
+      },
+      {
+        "attributes": {
+          "contractDependencies": [
+            26,
+            214,
+            302,
+            1366,
+            1733,
+            8080
+          ],
+          "contractKind": "contract",
+          "documentation": "@title RouletteForTesting\n@author Rosco Kalis <roscokalis@gmail.com>\n@dev This contract extends the Roulette contract, but with deterministic win conditions,\nto test the betting functionality.",
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            1812,
+            1733,
+            1366,
+            302,
+            214,
+            26,
+            8080
+          ],
+          "name": "RouletteForTesting",
+          "scope": 1813
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Roulette",
+                  "referencedDeclaration": 1733,
+                  "type": "contract Roulette"
+                },
+                "id": 1737,
+                "name": "UserDefinedTypeName",
+                "src": "305:8:12"
+              }
+            ],
+            "id": 1738,
+            "name": "InheritanceSpecifier",
+            "src": "305:8:12"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "name": "",
+              "scope": 1812,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "roscoinAddress",
+                      "scope": 1747,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address payable",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "payable",
+                          "type": "address payable"
+                        },
+                        "id": 1739,
+                        "name": "ElementaryTypeName",
+                        "src": "333:15:12"
+                      }
+                    ],
+                    "id": 1740,
+                    "name": "VariableDeclaration",
+                    "src": "333:30:12"
+                  }
+                ],
+                "id": 1741,
+                "name": "ParameterList",
+                "src": "332:32:12"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1745,
+                "name": "ParameterList",
+                "src": "397:0:12"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 1733,
+                      "type": "type(contract Roulette)",
+                      "value": "Roulette"
+                    },
+                    "id": 1742,
+                    "name": "Identifier",
+                    "src": "365:8:12"
+                  },
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 1740,
+                      "type": "address payable",
+                      "value": "roscoinAddress"
+                    },
+                    "id": 1743,
+                    "name": "Identifier",
+                    "src": "374:14:12"
+                  }
+                ],
+                "id": 1744,
+                "name": "ModifierInvocation",
+                "src": "365:24:12"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1746,
+                "name": "Block",
+                "src": "397:2:12"
+              }
+            ],
+            "id": 1747,
+            "name": "FunctionDefinition",
+            "src": "321:78:12"
+          },
+          {
+            "attributes": {
+              "documentation": "@notice Overrides the existing bet function, always takes 1 as winning number.\n@param number The number that is bet on.",
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "name": "bet",
+              "scope": 1812,
+              "stateMutability": "payable",
+              "superFunction": 1563,
+              "visibility": "external"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "number",
+                      "scope": 1811,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "uint8",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "uint8",
+                          "type": "uint8"
+                        },
+                        "id": 1748,
+                        "name": "ElementaryTypeName",
+                        "src": "574:5:12"
+                      }
+                    ],
+                    "id": 1749,
+                    "name": "VariableDeclaration",
+                    "src": "574:12:12"
+                  }
+                ],
+                "id": 1750,
+                "name": "ParameterList",
+                "src": "573:14:12"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 1753,
+                "name": "ParameterList",
+                "src": "619:0:12"
+              },
+              {
+                "attributes": {
+                  "arguments": null
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "argumentTypes": null,
+                      "overloadedDeclarations": [
+                        null
+                      ],
+                      "referencedDeclaration": 258,
+                      "type": "modifier ()",
+                      "value": "whenNotPaused"
+                    },
+                    "id": 1751,
+                    "name": "Identifier",
+                    "src": "605:13:12"
+                  }
+                ],
+                "id": 1752,
+                "name": "ModifierInvocation",
+                "src": "605:13:12"
+              },
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_2ea72281d4cb18f26b4db8aff3b88b8f2f00e50c75f5a430e80aa4712e748764",
+                                  "typeString": "literal_string \"Bet amount can not exceed max bet size\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                8098,
+                                8099
+                              ],
+                              "referencedDeclaration": 8099,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 1754,
+                            "name": "Identifier",
+                            "src": "630:7:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "<=",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "value",
+                                  "referencedDeclaration": null,
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 8095,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 1755,
+                                    "name": "Identifier",
+                                    "src": "638:3:12"
+                                  }
+                                ],
+                                "id": 1756,
+                                "name": "MemberAccess",
+                                "src": "638:9:12"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "arguments": [
+                                    null
+                                  ],
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "isStructConstructorCall": false,
+                                  "lValueRequested": false,
+                                  "names": [
+                                    null
+                                  ],
+                                  "type": "uint256",
+                                  "type_conversion": false
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": [
+                                        null
+                                      ],
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 1724,
+                                      "type": "function () view returns (uint256)",
+                                      "value": "maxBet"
+                                    },
+                                    "id": 1757,
+                                    "name": "Identifier",
+                                    "src": "651:6:12"
+                                  }
+                                ],
+                                "id": 1758,
+                                "name": "FunctionCall",
+                                "src": "651:8:12"
+                              }
+                            ],
+                            "id": 1759,
+                            "name": "BinaryOperation",
+                            "src": "638:21:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "42657420616d6f756e742063616e206e6f7420657863656564206d6178206265742073697a65",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Bet amount can not exceed max bet size\"",
+                              "value": "Bet amount can not exceed max bet size"
+                            },
+                            "id": 1760,
+                            "name": "Literal",
+                            "src": "661:40:12"
+                          }
+                        ],
+                        "id": 1761,
+                        "name": "FunctionCall",
+                        "src": "630:72:12"
+                      }
+                    ],
+                    "id": 1762,
+                    "name": "ExpressionStatement",
+                    "src": "630:72:12"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        1764
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "oraclizeFee",
+                          "scope": 1810,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint256",
+                              "type": "uint256"
+                            },
+                            "id": 1763,
+                            "name": "ElementaryTypeName",
+                            "src": "715:7:12"
+                          }
+                        ],
+                        "id": 1764,
+                        "name": "VariableDeclaration",
+                        "src": "715:19:12"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "uint256",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_stringliteral_21eff6db3cf423de70b78939a0b320a09532e53b36d8e49779bb3d382f433753",
+                                  "typeString": "literal_string \"WolframAlpha\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                2848,
+                                2866
+                              ],
+                              "referencedDeclaration": 2848,
+                              "type": "function (string memory) returns (uint256)",
+                              "value": "oraclize_getPrice"
+                            },
+                            "id": 1765,
+                            "name": "Identifier",
+                            "src": "737:17:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "576f6c6672616d416c706861",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"WolframAlpha\"",
+                              "value": "WolframAlpha"
+                            },
+                            "id": 1766,
+                            "name": "Literal",
+                            "src": "755:14:12"
+                          }
+                        ],
+                        "id": 1767,
+                        "name": "FunctionCall",
+                        "src": "737:33:12"
+                      }
+                    ],
+                    "id": 1768,
+                    "name": "VariableDeclarationStatement",
+                    "src": "715:55:12"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_bool",
+                                  "typeString": "bool"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_98eea70b75a595b66958bc23d3bea1922e7a685eedbc13e7256cf9e9ab374561",
+                                  "typeString": "literal_string \"Bet amount should be higher than oraclize fee\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                8098,
+                                8099
+                              ],
+                              "referencedDeclaration": 8099,
+                              "type": "function (bool,string memory) pure",
+                              "value": "require"
+                            },
+                            "id": 1769,
+                            "name": "Identifier",
+                            "src": "781:7:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_uint256",
+                                "typeString": "uint256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": ">",
+                              "type": "bool"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "value",
+                                  "referencedDeclaration": null,
+                                  "type": "uint256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 8095,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 1770,
+                                    "name": "Identifier",
+                                    "src": "789:3:12"
+                                  }
+                                ],
+                                "id": 1771,
+                                "name": "MemberAccess",
+                                "src": "789:9:12"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1764,
+                                  "type": "uint256",
+                                  "value": "oraclizeFee"
+                                },
+                                "id": 1772,
+                                "name": "Identifier",
+                                "src": "801:11:12"
+                              }
+                            ],
+                            "id": 1773,
+                            "name": "BinaryOperation",
+                            "src": "789:23:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "42657420616d6f756e742073686f756c6420626520686967686572207468616e206f7261636c697a6520666565",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Bet amount should be higher than oraclize fee\"",
+                              "value": "Bet amount should be higher than oraclize fee"
+                            },
+                            "id": 1774,
+                            "name": "Literal",
+                            "src": "814:47:12"
+                          }
+                        ],
+                        "id": 1775,
+                        "name": "FunctionCall",
+                        "src": "781:81:12"
+                      }
+                    ],
+                    "id": 1776,
+                    "name": "ExpressionStatement",
+                    "src": "781:81:12"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        1778
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "betValue",
+                          "scope": 1810,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "uint256",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "uint256",
+                              "type": "uint256"
+                            },
+                            "id": 1777,
+                            "name": "ElementaryTypeName",
+                            "src": "875:7:12"
+                          }
+                        ],
+                        "id": 1778,
+                        "name": "VariableDeclaration",
+                        "src": "875:16:12"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_uint256",
+                            "typeString": "uint256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "-",
+                          "type": "uint256"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "value",
+                              "referencedDeclaration": null,
+                              "type": "uint256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 8095,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 1779,
+                                "name": "Identifier",
+                                "src": "894:3:12"
+                              }
+                            ],
+                            "id": 1780,
+                            "name": "MemberAccess",
+                            "src": "894:9:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1764,
+                              "type": "uint256",
+                              "value": "oraclizeFee"
+                            },
+                            "id": 1781,
+                            "name": "Identifier",
+                            "src": "906:11:12"
+                          }
+                        ],
+                        "id": 1782,
+                        "name": "BinaryOperation",
+                        "src": "894:23:12"
+                      }
+                    ],
+                    "id": 1783,
+                    "name": "VariableDeclarationStatement",
+                    "src": "875:42:12"
+                  },
+                  {
+                    "attributes": {
+                      "assignments": [
+                        1785
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "name": "qid",
+                          "scope": 1810,
+                          "stateVariable": false,
+                          "storageLocation": "default",
+                          "type": "bytes32",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "name": "bytes32",
+                              "type": "bytes32"
+                            },
+                            "id": 1784,
+                            "name": "ElementaryTypeName",
+                            "src": "930:7:12"
+                          }
+                        ],
+                        "id": 1785,
+                        "name": "VariableDeclaration",
+                        "src": "930:11:12"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "bytes32",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_stringliteral_21eff6db3cf423de70b78939a0b320a09532e53b36d8e49779bb3d382f433753",
+                                  "typeString": "literal_string \"WolframAlpha\""
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_765bcca0276a334bea1890478f7f2114d2f4f9553b25f1b8019b47c6c2c8e7ac",
+                                  "typeString": "literal_string \"random integer between 0 and 0\""
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                2907,
+                                2950,
+                                2997,
+                                3042,
+                                3086,
+                                3132,
+                                3182,
+                                3230,
+                                3278,
+                                3328,
+                                3382,
+                                3434,
+                                3471,
+                                3511,
+                                3554,
+                                3594,
+                                3639,
+                                3687,
+                                3738,
+                                3786,
+                                3839,
+                                3895,
+                                3954,
+                                4010,
+                                4071,
+                                4135,
+                                4202,
+                                4266,
+                                4335,
+                                4407,
+                                4482,
+                                4554,
+                                4602,
+                                4652,
+                                4706,
+                                4758,
+                                4795,
+                                4835,
+                                4878,
+                                4918,
+                                4963,
+                                5011,
+                                5062,
+                                5110,
+                                5163,
+                                5219,
+                                5278,
+                                5334,
+                                5395,
+                                5459,
+                                5526,
+                                5590,
+                                5659,
+                                5731,
+                                5806,
+                                5878
+                              ],
+                              "referencedDeclaration": 2907,
+                              "type": "function (string memory,string memory) returns (bytes32)",
+                              "value": "oraclize_query"
+                            },
+                            "id": 1786,
+                            "name": "Identifier",
+                            "src": "944:14:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "576f6c6672616d416c706861",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"WolframAlpha\"",
+                              "value": "WolframAlpha"
+                            },
+                            "id": 1787,
+                            "name": "Literal",
+                            "src": "959:14:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "72616e646f6d20696e7465676572206265747765656e203020616e642030",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"random integer between 0 and 0\"",
+                              "value": "random integer between 0 and 0"
+                            },
+                            "id": 1788,
+                            "name": "Literal",
+                            "src": "975:32:12"
+                          }
+                        ],
+                        "id": 1789,
+                        "name": "FunctionCall",
+                        "src": "944:64:12"
+                      }
+                    ],
+                    "id": 1790,
+                    "name": "VariableDeclarationStatement",
+                    "src": "930:78:12"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": "=",
+                          "type": "struct Roulette.PlayerInfo storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": true,
+                              "isPure": false,
+                              "lValueRequested": true,
+                              "type": "struct Roulette.PlayerInfo storage ref"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1460,
+                                  "type": "mapping(bytes32 => struct Roulette.PlayerInfo storage ref)",
+                                  "value": "players"
+                                },
+                                "id": 1791,
+                                "name": "Identifier",
+                                "src": "1098:7:12"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1785,
+                                  "type": "bytes32",
+                                  "value": "qid"
+                                },
+                                "id": 1792,
+                                "name": "Identifier",
+                                "src": "1106:3:12"
+                              }
+                            ],
+                            "id": 1793,
+                            "name": "IndexAccess",
+                            "src": "1098:12:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "isStructConstructorCall": true,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "type": "struct Roulette.PlayerInfo memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_address_payable",
+                                      "typeString": "address payable"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint256",
+                                      "typeString": "uint256"
+                                    },
+                                    {
+                                      "typeIdentifier": "t_uint8",
+                                      "typeString": "uint8"
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1456,
+                                  "type": "type(struct Roulette.PlayerInfo storage pointer)",
+                                  "value": "PlayerInfo"
+                                },
+                                "id": 1794,
+                                "name": "Identifier",
+                                "src": "1113:10:12"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "member_name": "sender",
+                                  "referencedDeclaration": null,
+                                  "type": "address payable"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 8095,
+                                      "type": "msg",
+                                      "value": "msg"
+                                    },
+                                    "id": 1795,
+                                    "name": "Identifier",
+                                    "src": "1124:3:12"
+                                  }
+                                ],
+                                "id": 1796,
+                                "name": "MemberAccess",
+                                "src": "1124:10:12"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1778,
+                                  "type": "uint256",
+                                  "value": "betValue"
+                                },
+                                "id": 1797,
+                                "name": "Identifier",
+                                "src": "1136:8:12"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 1749,
+                                  "type": "uint8",
+                                  "value": "number"
+                                },
+                                "id": 1798,
+                                "name": "Identifier",
+                                "src": "1146:6:12"
+                              }
+                            ],
+                            "id": 1799,
+                            "name": "FunctionCall",
+                            "src": "1113:40:12"
+                          }
+                        ],
+                        "id": 1800,
+                        "name": "Assignment",
+                        "src": "1098:55:12"
+                      }
+                    ],
+                    "id": 1801,
+                    "name": "ExpressionStatement",
+                    "src": "1098:55:12"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_address_payable",
+                                  "typeString": "address payable"
+                                },
+                                {
+                                  "typeIdentifier": "t_bytes32",
+                                  "typeString": "bytes32"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint256",
+                                  "typeString": "uint256"
+                                },
+                                {
+                                  "typeIdentifier": "t_uint8",
+                                  "typeString": "uint8"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1470,
+                              "type": "function (address,bytes32,uint256,uint8)",
+                              "value": "Bet"
+                            },
+                            "id": 1802,
+                            "name": "Identifier",
+                            "src": "1169:3:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "sender",
+                              "referencedDeclaration": null,
+                              "type": "address payable"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 8095,
+                                  "type": "msg",
+                                  "value": "msg"
+                                },
+                                "id": 1803,
+                                "name": "Identifier",
+                                "src": "1173:3:12"
+                              }
+                            ],
+                            "id": 1804,
+                            "name": "MemberAccess",
+                            "src": "1173:10:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1785,
+                              "type": "bytes32",
+                              "value": "qid"
+                            },
+                            "id": 1805,
+                            "name": "Identifier",
+                            "src": "1185:3:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1778,
+                              "type": "uint256",
+                              "value": "betValue"
+                            },
+                            "id": 1806,
+                            "name": "Identifier",
+                            "src": "1190:8:12"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 1749,
+                              "type": "uint8",
+                              "value": "number"
+                            },
+                            "id": 1807,
+                            "name": "Identifier",
+                            "src": "1200:6:12"
+                          }
+                        ],
+                        "id": 1808,
+                        "name": "FunctionCall",
+                        "src": "1169:38:12"
+                      }
+                    ],
+                    "id": 1809,
+                    "name": "EmitStatement",
+                    "src": "1164:43:12"
+                  }
+                ],
+                "id": 1810,
+                "name": "Block",
+                "src": "619:596:12"
+              }
+            ],
+            "id": 1811,
+            "name": "FunctionDefinition",
+            "src": "561:654:12"
+          }
+        ],
+        "id": 1812,
+        "name": "ContractDefinition",
+        "src": "274:944:12"
+      }
+    ],
+    "id": 1813,
+    "name": "SourceUnit",
+    "src": "0:1220:12"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.5",
+  "updatedAt": "2022-02-27T15:50:52.688Z",
+  "devdoc": {
+    "author": "Rosco Kalis <roscokalis@gmail.com>",
+    "details": "This contract extends the Roulette contract, but with deterministic win conditions, to test the betting functionality.",
+    "methods": {
+      "__callback(bytes32,string)": {
+        "details": "Uses the `players` mapping to retrieve a player's information, deletes the player information afterwards.Emits Play event.",
+        "params": {
+          "qid": "The query id of the corresponding Oraclize query.",
+          "result": "The result of the Oraclize query."
+        }
+      },
+      "bet(uint8)": {
+        "params": {
+          "number": "The number that is bet on."
+        }
+      },
+      "deposit()": {
+        "details": "Funds are added to balanceForBacking as well."
+      },
+      "maxBet()": {
+        "details": "Based on empirical statistics (see docs/max_bet_size.md).",
+        "return": "The maximum bet."
+      },
+      "oraclizeFeeEstimate()": {
+        "return": "An estimate of the oraclize fee."
+      },
+      "pause()": {
+        "details": "Called by a pauser to pause, triggers stopped state."
+      },
+      "paused()": {
+        "details": "Returns true if the contract is paused, and false otherwise."
+      },
+      "unpause()": {
+        "details": "Called by a pauser to unpause, returns to normal state."
+      },
+      "withdraw(uint256)": {
+        "details": "Funds are removed from balanceForBacking as well.",
+        "params": {
+          "ethAmount": "The amount of eth to withdraw."
+        }
+      }
+    },
+    "title": "RouletteForTesting"
+  },
+  "userdoc": {
+    "methods": {
+      "__callback(bytes32,string)": {
+        "notice": "Callback function for Oraclize, checks if the player won the bet, and payd out if they did."
+      },
+      "bet(uint8)": {
+        "notice": "Overrides the existing bet function, always takes 1 as winning number."
+      },
+      "deposit()": {
+        "notice": "Allows the backed token to deposit funds into the contract."
+      },
+      "maxBet()": {
+        "notice": "Returns the maximum bet (0.5% of balance) for this contract."
+      },
+      "oraclizeFeeEstimate()": {
+        "notice": "Returns an estimate of the oraclize fee."
+      },
+      "withdraw(uint256)": {
+        "notice": "Allows the backed token to withdraw funds from the contract."
+      }
+    }
+  }
+}
